@@ -1,0 +1,43 @@
+{
+  "name": "express-backend-template",
+  "version": "1.0.0",
+  "description": "Template for an Express backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "mocha": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js'",
+    "mocha-exit0": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js' || true",
+    "test": "npm run mocha-exit0",
+    "cover": "nodemon --exec nyc --reporter=lcov --reporter=text-summary npm run mocha-exit0",
+    "wmocha": "mocha --exit --file test/setup.test.js \"./{,!(node_modules)/**/}*.test.js\"",
+    "wmocha-exit0": "mocha --exit --file test/setup.test.js \"./{,!(node_modules)/**/}*.test.js\" || true",
+    "wtest": "npm run wmocha-exit0",
+    "wcover": "nodemon --exec nyc --reporter=lcov --reporter=text-summary npm run wmocha-exit0",
+    "nmtest": "nodemon --exec npm run mocha-exit0",
+    "wnmtest": "nodemon --exec npm run wmocha-exit0",
+    "heroku": "node index.js",
+    "travis": "npm run mocha"
+  },
+  "author": "Jeffrey Mahmoudi <jeffreymahmoudi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "knex": "^0.15.2",
+    "mongoose": "^5.2.6",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}
