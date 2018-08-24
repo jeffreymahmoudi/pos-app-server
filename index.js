@@ -14,6 +14,7 @@ const localStrategy = require('./passport/local');
 const jwtStrategy = require('./passport/jwt');
 
 const protectedRouter = require('./routes/protected');
+const checksRouter = require('./routes/checks');
 const tablesRouter = require('./routes/tables');
 const itemsRouter = require('./routes/items');
 const usersRouter = require('./routes/users');
@@ -39,6 +40,7 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/protected', protectedRouter);
+app.use('/api/checks', checksRouter);
 app.use('/api/tables', tablesRouter);
 app.use('/api/items', itemsRouter);
 app.use('/api/users', usersRouter);
