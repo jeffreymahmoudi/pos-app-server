@@ -9,7 +9,7 @@ const router = express.Router();
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
 
 router.get('/', (req, res, next) => {
-  res.send('Protected route.');
+  res.json({ data: 'Protected route.'} );
 });
 
 module.exports = router;

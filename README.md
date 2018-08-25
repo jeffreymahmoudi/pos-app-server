@@ -1,46 +1,116 @@
-# Express Backend Template
+Moody POS
+============================
 
-A template for developing and deploying Node.js apps.
+This API provides resources for [Moody POS](https://moody-pos-client.herokuapp.com/) app which documentation can be found [here](https://github.com/jeffreymahmoudi/moody-pos-client).
 
-## Getting started
+Live [URL](https://moody-pos-client.herokuapp.com/)
 
-### Setting up a project
+## API Documentation
+#### `GET /items/`
+ 
+Returns all menu items.
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/jeffreymahmoudi/express-backend-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Copy the example .env: `cp .env.example .env`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left unchecked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+Example response:
+ 
+```javascript
+[
+   {
+      "name": "Beef",
+      "price": 3,
+      "id": "5b73a3ac11894b3ffc04dea3"
+    },
+    {
+       "name": "Chicken",
+       "price": 2,
+       "id": "5b73a3c711894b3ffc04dea4"
+    },
+    {
+       "name": "Fish",
+       "price": 1,
+       "id": "5b73a3d111894b3ffc04dea5"
+    }
+]
+```
 
-### Working on the project
+#### `GET /tables/`
+ 
+Returns all tables.
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm start`
-    * Starts a server running at http://localhost:8080
-    * Automatically restarts when any of your files change
+Example response:
+ 
+```javascript
+  [
+    {
+        "number": 1,
+        "id": "5b70c022d69aca3dd05a3c72"
+    },
+    {
+        "number": 2,
+        "id": "5b70c032d69aca3dd05a3c73"
+    },
+    {
+        "number": 3,
+        "id": "5b70c039d69aca3dd05a3c74"
+    }    
+]
+```
 
-## Databases
+#### `POST /checks/`
+ 
+Returns a new check.
+ 
+Example response:
 
-By default, the template is configured to connect to a MongoDB database using Mongoose.  It can be changed to connect to a PostgreSQL database using Knex by replacing any imports of `db-mongoose.js` with imports of `db-knex.js`, and uncommenting the Postgres `DATABASE_URL` lines in `config.js`.
+```javascript
+  {
+    "closed": false,
+    "orderedItems": [],
+    "tableId": "5b70c022d69aca3dd05a3c72",
+    "createdAt": "2018-08-17T07:39:32.271Z",
+    "updatedAt": "2018-08-17T07:39:32.271Z",
+    "id": "5b767bb4bf2e4825842bd8bc"
+}
+```
 
-## Deployment
+#### `POST /checks/:id/addItem`
 
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
+Adds menu item to check
 
-### Setting up the project on Heroku
+Data parameters:
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
+```javascript
+{
+   "itemId": "5b73a3c711894b3ffc04dea4"
+}
+```
 
-* If your backend connects to a database, you need to configure the database URL:
-    * For a MongoDB database: `heroku config:set DATABASE_URL=mongodb://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-    * For a PostgreSQL database: `heroku config:set DATABASE_URL=postgresql://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
+Example response:
 
-* If you are creating a full-stack app, you need to configure the client origin: `heroku config:set CLIENT_ORIGIN=https://www.YOUR_DEPLOYED_CLIENT.com`
+```javascript
+{
+    "closed": false,
+    "orderedItems": [
+        {
+            "name": "Chicken",
+            "price": 2,
+            "id": "5b73a3c711894b3ffc04dea4"
+        }
+    ],
+    "tableId": "5b70c022d69aca3dd05a3c72",
+    "createdAt": "2018-08-17T07:39:32.271Z",
+    "updatedAt": "2018-08-17T07:40:16.469Z",
+    "id": "5b767bb4bf2e4825842bd8bc"
+}
+```
 
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
+ ## Tech Stack
+ 
+ [Node.js](https://nodejs.org/en/)
+ 
+ [Express.js](https://expressjs.com/)
+ 
+ [MongoDB](https://www.mongodb.com/)
+ 
+ [Mongoose](https://mongoosejs.com/)
+ 
+ [dotenv](https://www.npmjs.com/package/dotenv)
