@@ -1,9 +1,9 @@
 Moody POS
 ============================
 
-This API provides resources for [Moody POS](https://moody-pos-client.herokuapp.com/) app which documentation can be found [here](https://github.com/jeffreymahmoudi/moody-pos-client).
+This API provides resources for [Moody POS](https://moody-pos-app-client.herokuapp.com/) app which documentation can be found [here](https://github.com/jeffreymahmoudi/pos-app-client).
 
-Live [URL](https://moody-pos-client.herokuapp.com/)
+Live [URL](https://moody-pos-app-client.herokuapp.com/)
 
 ## API Documentation
 #### `GET /items/`
